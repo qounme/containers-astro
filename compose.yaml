@@ -1,0 +1,21 @@
+x-attachable: &attachable
+  tty: true
+  stdin_open: true
+
+x-astro_build_context: &astro_build_context
+  context: .
+  dockerfile: Dockerfile
+
+x-astro_ports: &astro_ports
+  - 4321:4321
+
+x-astro_volumes: &astro_volumes
+  - ./:/app
+
+services:
+  app:
+    build: *astro_build_context
+    command: npm run dev -- --host 0.0.0.0
+    ports: *astro_ports
+    volumes: *astro_volumes
+    <<: *attachable
