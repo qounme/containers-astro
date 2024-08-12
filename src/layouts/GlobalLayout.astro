@@ -13,6 +13,14 @@ const { title } = Astro.props
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    {/* テーマの初期化 */}
+    <script is:inline>
+      const _colorScheme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+      const _theme = localStorage.getItem('theme') || _colorScheme
+
+      document.documentElement.setAttribute('data-theme', _theme)
+      localStorage.setItem('theme', _theme)
+    </script>
   </head>
   <body>
     <Header />

@@ -1,0 +1,22 @@
+---
+
+---
+
+<label class="grid cursor-pointer place-items-center">
+  <input type="checkbox" id="theme-controller" class="toggle bg-base-content hover:bg-base-content" />
+</label>
+
+{/* テーマの更新 */}
+<script is:inline>
+  const _themeController = document.getElementById('theme-controller')
+  const _currentTheme = document.documentElement.getAttribute('data-theme')
+
+  _themeController.checked = _currentTheme === 'light'
+
+  const _updateTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }
+
+  _themeController.addEventListener('change', () => _updateTheme(_themeController.checked ? 'light' : 'dark'))
+</script>
