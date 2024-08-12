@@ -20,6 +20,19 @@ h1 {
   font-size: 2.5rem;
 }
 
+.hamburger {
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  display: block;
+  width: 40px;
+  height: 5px;
+  margin-bottom: 10px;
+  background-color: #ff9776;
+}
+
 .nav-links {
   width: 100%;
   top: 5rem;
@@ -49,6 +62,10 @@ h1 {
 }
 
 @media screen and (min-width: 636px) {
+  .hamburger {
+    display: none;
+  }
+
   .nav-links {
     margin-left: 5em;
     display: block;
