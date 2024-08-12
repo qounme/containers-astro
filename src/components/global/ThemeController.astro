@@ -3,12 +3,26 @@
 ---
 
 <label class="grid cursor-pointer place-items-center">
-  <input type="checkbox" id="theme-controller" class="toggle bg-base-content hover:bg-base-content" />
+  <input
+    type="checkbox"
+    id="theme-controller"
+    class="toggle col-span-2 col-start-1 row-start-1 bg-base-content hover:bg-base-content"
+  />
+  <iconify-icon
+    icon="line-md:sunny-outline-loop"
+    id="theme-controller-sunny-icon"
+    class="col-start-1 row-start-1 stroke-base-content"></iconify-icon>
+  <iconify-icon
+    icon="line-md:moon-alt-loop"
+    id="theme-controller-moon-icon"
+    class="col-start-2 row-start-1 stroke-base-content"></iconify-icon>
 </label>
 
 {/* テーマの更新 */}
 <script is:inline>
   const _themeController = document.getElementById('theme-controller')
+  const _themeControllerSunnyIcon = document.getElementById('theme-controller-sunny-icon')
+  const _themeControllerMoonIcon = document.getElementById('theme-controller-moon-icon')
   const _currentTheme = document.documentElement.getAttribute('data-theme')
 
   _themeController.checked = _currentTheme === 'light'
@@ -17,6 +31,13 @@
     document.documentElement.setAttribute('data-theme', theme)
     localStorage.setItem('theme', theme)
   }
+  const _restartThemeControllerIconAnimation = () => {
+    _themeControllerSunnyIcon.restartAnimation()
+    _themeControllerMoonIcon.restartAnimation()
+  }
 
-  _themeController.addEventListener('change', () => _updateTheme(_themeController.checked ? 'light' : 'dark'))
+  _themeController.addEventListener('change', () => {
+    _restartThemeControllerIconAnimation()
+    _updateTheme(_themeController.checked ? 'light' : 'dark')
+  })
 </script>
