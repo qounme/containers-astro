@@ -11,6 +11,7 @@ x-astro_ports: &astro_ports
 
 x-astro_volumes: &astro_volumes
   - ./:/app
+  - node_modules:/app/node_modules
 
 services:
   app:
@@ -19,3 +20,6 @@ services:
     ports: *astro_ports
     volumes: *astro_volumes
     <<: *attachable
+
+volumes:
+  node_modules:
