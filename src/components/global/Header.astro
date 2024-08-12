@@ -8,8 +8,15 @@ import ThemeController from './ThemeController.astro'
     <div class="navbar-center">
       <a href="/" class="text-2xl">Containers Astro</a>
     </div>
-    <div class="navbar-end">
+    <div class="navbar-end flex items-center gap-2">
       <ThemeController />
+      <a
+        href="https://github.com/qounme/containers-astro"
+        target="_blank"
+        rel="noopener"
+        class="btn-square btn-ghost btn-sm hover:bg-transparent">
+        <iconify-icon icon="mdi:github" width="2em" height="2em" class="stroke-base-content"></iconify-icon>
+      </a>
     </div>
   </nav>
 </header>
