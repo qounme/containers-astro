@@ -9,42 +9,42 @@
     class="toggle col-span-2 col-start-1 row-start-1 bg-base-content hover:bg-base-content"
   />
   <iconify-icon
-    icon="line-md:sunny-outline-loop"
-    mode="svg"
-    width="1rem"
-    height="1rem"
-    id="theme-controller-sunny-icon"
-    class="col-start-1 row-start-1 inline-block h-4 w-4"></iconify-icon>
-  <iconify-icon
     icon="line-md:moon-alt-loop"
     mode="svg"
     width="1rem"
     height="1rem"
     id="theme-controller-moon-icon"
+    class="col-start-1 row-start-1 inline-block h-4 w-4"></iconify-icon>
+  <iconify-icon
+    icon="line-md:sunny-outline-loop"
+    mode="svg"
+    width="1rem"
+    height="1rem"
+    id="theme-controller-sunny-icon"
     class="col-start-2 row-start-1 inline-block h-4 w-4"></iconify-icon>
 </label>
 
 {/* テーマの更新 */}
-{/* デザインが一瞬だけ崩れるため is:inline を設定しておく */}
-<script is:inline>
-  const _themeController = document.getElementById('theme-controller')
-  const _themeControllerSunnyIcon = document.getElementById('theme-controller-sunny-icon')
-  const _themeControllerMoonIcon = document.getElementById('theme-controller-moon-icon')
-  const _currentTheme = document.documentElement.getAttribute('data-theme')
+<script>
+  const themeController = document.getElementById('theme-controller')! as HTMLInputElement
+  // iconify icon web component は専用の型になるため any を設定しておく
+  const themeControllerSunnyIcon = document.getElementById('theme-controller-sunny-icon')! as any
+  const themeControllerMoonIcon = document.getElementById('theme-controller-moon-icon')! as any
+  const currentTheme = document.documentElement.getAttribute('data-theme')
 
-  _themeController.checked = _currentTheme === 'light'
+  themeController.checked = currentTheme === 'dark'
 
-  const _updateTheme = (theme) => {
+  const updateTheme = (theme: string) => {
     document.documentElement.setAttribute('data-theme', theme)
     localStorage.setItem('theme', theme)
   }
-  const _restartThemeControllerIconAnimation = () => {
-    _themeControllerSunnyIcon.restartAnimation()
-    _themeControllerMoonIcon.restartAnimation()
+  const restartThemeControllerIconAnimation = () => {
+    themeControllerSunnyIcon.restartAnimation()
+    themeControllerMoonIcon.restartAnimation()
   }
 
-  _themeController.addEventListener('change', () => {
-    _restartThemeControllerIconAnimation()
-    _updateTheme(_themeController.checked ? 'light' : 'dark')
+  themeController.addEventListener('change', () => {
+    restartThemeControllerIconAnimation()
+    updateTheme(themeController.checked ? 'dark' : 'light')
   })
 </script>
