@@ -1,4 +1,10 @@
-// テーマの初期化
+/**
+ * (c) Fumiya Takaki
+ *
+ * Licensed under MIT.
+ *
+ * @license MIT
+ */
 ;(() => {
   const colorScheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
   const theme = document.cookie.match(/theme=(light|dark)(;|$)/)?.[1] || colorScheme
