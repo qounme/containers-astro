@@ -1,8 +1,8 @@
 // テーマの初期化
 ;(() => {
   const colorScheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  const theme = localStorage.getItem('theme') || colorScheme
+  const theme = document.cookie.match(/theme=(light|dark)(;|$)/)?.[1] || colorScheme
 
   document.documentElement.setAttribute('data-theme', theme)
-  localStorage.setItem('theme', theme)
+  document.cookie = `theme=${encodeURIComponent(theme)};max-age=${60 * 60 * 24 * 365}`
 })()

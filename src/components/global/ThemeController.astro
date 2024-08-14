@@ -1,5 +1,5 @@
 ---
-
+const isDarkTheme = Astro.cookies.get('theme')?.value === 'dark'
 ---
 
 <label class="grid cursor-pointer place-items-center p-2">
@@ -7,6 +7,7 @@
     type="checkbox"
     id="theme-controller"
     class="toggle col-span-2 col-start-1 row-start-1 bg-base-content hover:bg-base-content"
+    checked={isDarkTheme}
   />
   <iconify-icon
     icon="line-md:moon-alt-loop"
@@ -30,13 +31,13 @@
   // iconify icon web component は専用の型になるため any を設定しておく
   const themeControllerSunnyIcon = document.getElementById('theme-controller-sunny-icon')! as any
   const themeControllerMoonIcon = document.getElementById('theme-controller-moon-icon')! as any
-  const currentTheme = document.documentElement.getAttribute('data-theme')
 
-  themeController.checked = currentTheme === 'dark'
-
+  const ensureCheckboxState = () => {
+    themeController.checked = document.documentElement.getAttribute('data-theme') === 'dark'
+  }
   const updateTheme = (theme: string) => {
     document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
+    document.cookie = `theme=${encodeURIComponent(theme)};max-age=${60 * 60 * 24 * 365}`
   }
   const restartThemeControllerIconAnimation = () => {
     themeControllerSunnyIcon.restartAnimation()
@@ -47,4 +48,6 @@
     restartThemeControllerIconAnimation()
     updateTheme(themeController.checked ? 'dark' : 'light')
   })
+  // 初回リクエスト時などの cookies からテーマ情報が取得できない場合を考慮しておく
+  ensureCheckboxState()
 </script>
