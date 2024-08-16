@@ -1,6 +1,7 @@
 ---
 import Drawer from './Drawer.astro'
 import ThemeController from './ThemeController.astro'
+import { RouteHelper } from '../../helpers/route_helper'
 ---
 
 <header class="sticky top-0 z-10 bg-base-100 bg-opacity-90 text-base-content backdrop-blur">
@@ -10,7 +11,7 @@ import ThemeController from './ThemeController.astro'
     </div>
     <div class="navbar-center flex-grow sm:flex-grow-0">
       <a
-        href="/"
+        href={RouteHelper.ROOT}
         class="btn btn-ghost no-animation btn-sm text-xl font-normal sm:btn-md hover:bg-transparent sm:text-2xl"
         >Containers Astro</a
       >
