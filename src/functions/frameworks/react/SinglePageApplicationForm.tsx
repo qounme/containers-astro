@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { EmailForm } from './SinglePageApplicationForm/EmailForm'
 import { ProfileForm } from './SinglePageApplicationForm/ProfileForm'
 import { PasswordForm } from './SinglePageApplicationForm/PasswordForm'
+import { ConfirmationForm } from './SinglePageApplicationForm/ConfirmationForm'
 
 export const SinglePageApplicationForm = () => {
   const [step, setStep] = useState(1)
@@ -47,7 +48,12 @@ export const SinglePageApplicationForm = () => {
             goToPreviousStep={goToPreviousStep}
           />
         )}
-        {step === 4 && <p>TODO: 確認画面</p>}
+        {step === 4 && (
+          <ConfirmationForm
+            useSinglePageApplicationForm={useSinglePageApplicationForm}
+            goToPreviousStep={goToPreviousStep}
+          />
+        )}
       </div>
     </div>
   )
