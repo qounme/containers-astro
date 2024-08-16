@@ -1,7 +1,6 @@
 import { z } from 'astro/zod'
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-const KATAKANA_REGEX = /^[\u30A0-\u30FFー]+$/
 const PHONE_NUMBER_REGEX = /^0[789]0\d{8}$/
 const BIO_LENGTH_LIMIT = 20
 const PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$/
