@@ -18,17 +18,15 @@ export const ProfileForm = ({
   } = useSinglePageApplicationForm
   const isInValid = () =>
     !getFieldState('name').isDirty ||
-    !getFieldState('nameKana').isDirty ||
     !getFieldState('phoneNumbers').isDirty ||
     getFieldState('name').invalid ||
-    getFieldState('nameKana').invalid ||
     getFieldState('phoneNumbers').invalid
 
   return (
     <form className="w-full">
       <label className="form-control">
         <div className="label">
-          <span className="label-text">名前</span>
+          <span className="label-text">Name</span>
         </div>
         <input type="text" className="input input-bordered" {...register('name')} />
         <div className="label">
@@ -37,16 +35,7 @@ export const ProfileForm = ({
       </label>
       <label className="form-control">
         <div className="label">
-          <span className="label-text">名前（カナ）</span>
-        </div>
-        <input type="text" className="input input-bordered" {...register('nameKana')} />
-        <div className="label">
-          {errors.nameKana && <span className="label-text-alt text-error">{errors.nameKana.message}</span>}
-        </div>
-      </label>
-      <label className="form-control">
-        <div className="label">
-          <span className="label-text">携帯電話番号</span>
+          <span className="label-text">Phone number</span>
         </div>
         <div className="flex items-center justify-between">
           <input
@@ -78,7 +67,7 @@ export const ProfileForm = ({
       </label>
       <label className="form-control">
         <div className="label">
-          <span className="label-text">プロフィール（任意）</span>
+          <span className="label-text">Bio (optional)</span>
         </div>
         <input type="text" className="input input-bordered" {...register('bio')} />
         <div className="label">
@@ -87,14 +76,14 @@ export const ProfileForm = ({
       </label>
       <div className="card-actions mt-4 w-full justify-center">
         <button type="button" className="btn btn-neutral btn-block sm:btn-wide" onClick={goToPreviousStep}>
-          前のステップへ
+          Back
         </button>
         <button
           type="button"
           disabled={isInValid()}
           className="btn btn-primary btn-block sm:btn-wide"
           onClick={goToNextStep}>
-          次のステップへ
+          Next
         </button>
       </div>
     </form>

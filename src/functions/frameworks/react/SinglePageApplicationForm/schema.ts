@@ -14,18 +14,17 @@ const validatePassword = (data: { password: string; passwordConfirmation: string
 export const singlePageApplicationFormSchema = z
   .object({
     // ステップ 1
-    email: z.string().regex(EMAIL_REGEX, { message: 'メールアドレスを入力してください' }),
+    email: z.string().regex(EMAIL_REGEX, { message: 'Please enter your email.' }),
     // ステップ 2
-    name: z.string().min(1, { message: '名前を入力してください' }),
-    nameKana: z.string().regex(KATAKANA_REGEX, { message: '名前（カナ）を入力してください' }),
+    name: z.string().min(1, { message: 'Please enter your name.' }),
     phoneNumbers: z
       .tuple([z.string(), z.string(), z.string()])
-      .refine(validatePhoneNumber, { message: '携帯電話番号を入力してください' }),
-    bio: z.string().max(BIO_LENGTH_LIMIT, { message: `プロフィールは${BIO_LENGTH_LIMIT}文字以内で入力してください` }),
+      .refine(validatePhoneNumber, { message: 'Please enter your phone number.' }),
+    bio: z.string().max(BIO_LENGTH_LIMIT, { message: `Your bio must be within ${BIO_LENGTH_LIMIT} characters.` }),
     // ステップ 3
-    password: z.string().regex(PASSWORD_REGEX, { message: 'パスワードを入力してください' }),
+    password: z.string().regex(PASSWORD_REGEX, { message: 'Please enter the password.' }),
     passwordConfirmation: z.string(),
   })
-  .refine(validatePassword, { message: '同じパスワードを入力してください', path: ['passwordConfirmation'] })
+  .refine(validatePassword, { message: 'Please enter the same password again.', path: ['passwordConfirmation'] })
 
 export type SinglePageApplicationFormSchema = z.infer<typeof singlePageApplicationFormSchema>

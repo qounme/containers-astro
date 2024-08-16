@@ -24,28 +24,21 @@ export const ConfirmationForm = ({
     <form className="w-full">
       <label className="form-control">
         <div className="label">
-          <span className="label-text">メールアドレス</span>
+          <span className="label-text">Email</span>
         </div>
         <p className="input input-bordered flex items-center bg-base-200">{getValues('email')}</p>
         <div className="label"></div>
       </label>
       <label className="form-control">
         <div className="label">
-          <span className="label-text">名前</span>
+          <span className="label-text">Name</span>
         </div>
         <p className="input input-bordered flex items-center bg-base-200">{getValues('name')}</p>
         <div className="label"></div>
       </label>
       <label className="form-control">
         <div className="label">
-          <span className="label-text">名前（カナ）</span>
-        </div>
-        <p className="input input-bordered flex items-center bg-base-200">{getValues('nameKana')}</p>
-        <div className="label"></div>
-      </label>
-      <label className="form-control">
-        <div className="label">
-          <span className="label-text">携帯電話番号</span>
+          <span className="label-text">Phone number</span>
         </div>
         <div className="flex items-center justify-between">
           <p className="input input-bordered flex items-center bg-base-200">
@@ -56,28 +49,28 @@ export const ConfirmationForm = ({
       </label>
       <label className="form-control">
         <div className="label">
-          <span className="label-text">プロフィール（任意）</span>
+          <span className="label-text">Bio</span>
         </div>
         <p className="input input-bordered flex items-center bg-base-200">{getValues('bio')}</p>
         <div className="label"></div>
       </label>
       <label className="form-control">
         <div className="label">
-          <span className="label-text">パスワード</span>
+          <span className="label-text">Password</span>
         </div>
         <p className="input input-bordered flex items-center bg-base-200">{'*'.repeat(getValues('password').length)}</p>
         <div className="label"></div>
       </label>
       <div className="card-actions mt-4 w-full justify-center">
         <button type="button" className="btn btn-neutral btn-block sm:btn-wide" onClick={goToPreviousStep}>
-          前のステップへ
+          Back
         </button>
         <button
           type="button"
           disabled={!isValid}
           className="btn btn-primary btn-block sm:btn-wide"
           onClick={handleSubmit((data) => console.log(data))}>
-          登録する
+          Register
         </button>
       </div>
     </form>
