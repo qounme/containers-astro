@@ -15,6 +15,14 @@ export const SinglePageApplicationForm = () => {
   const useSinglePageApplicationForm = useForm<SinglePageApplicationFormSchema>({
     resolver: zodResolver(singlePageApplicationFormSchema),
     mode: 'onChange',
+    defaultValues: {
+      email: '',
+      name: '',
+      phoneNumbers: ['', '', ''],
+      bio: '',
+      password: '',
+      passwordConfirmation: '',
+    },
   })
 
   const goToNextStep = () => setStep((s) => Math.min(s + 1, 4))
