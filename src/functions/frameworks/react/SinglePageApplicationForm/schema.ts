@@ -16,6 +16,7 @@ export const singlePageApplicationFormSchema = z
     email: z.string().regex(EMAIL_REGEX, { message: 'Please enter your email.' }),
     // ステップ 2
     name: z.string().min(1, { message: 'Please enter your name.' }),
+    gender: z.enum(['male', 'female', 'non-binary']),
     phoneNumbers: z
       .tuple([z.string(), z.string(), z.string()])
       .refine(validatePhoneNumber, { message: 'Please enter your phone number.' }),

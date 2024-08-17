@@ -18,6 +18,7 @@ export const SinglePageApplicationForm = () => {
     defaultValues: {
       email: '',
       name: '',
+      gender: undefined,
       phoneNumbers: ['', '', ''],
       bio: '',
       password: '',

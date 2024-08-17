@@ -18,8 +18,10 @@ export const ProfileForm = ({
   } = useSinglePageApplicationForm
   const isInValid = () =>
     !getFieldState('name').isDirty ||
+    !getFieldState('gender').isDirty ||
     !getFieldState('phoneNumbers').isDirty ||
     getFieldState('name').invalid ||
+    getFieldState('gender').invalid ||
     getFieldState('phoneNumbers').invalid
 
   return (
@@ -33,6 +35,28 @@ export const ProfileForm = ({
           {errors.name && <span className="label-text-alt text-error">{errors.name.message}</span>}
         </div>
       </label>
+      <div className="form-control">
+        <div className="label">
+          <span className="label-text">Gender</span>
+        </div>
+        <div className="flex flex-col items-start justify-center sm:flex-row sm:items-center sm:justify-start sm:gap-8">
+          <label className="label col-start-1 cursor-pointer">
+            <input type="radio" className="radio" value="male" {...register('gender')} />
+            <span className="label-text ml-4">Male</span>
+          </label>
+          <label className="label col-start-2 cursor-pointer">
+            <input type="radio" className="radio" value="female" {...register('gender')} />
+            <span className="label-text ml-4">Female</span>
+          </label>
+          <label className="label col-start-3 cursor-pointer">
+            <input type="radio" className="radio" value="non-binary" {...register('gender')} />
+            <span className="label-text ml-4">Non-binary</span>
+          </label>
+        </div>
+        <div className="label">
+          {errors.gender && <span className="label-text-alt text-error">{errors.gender.message}</span>}
+        </div>
+      </div>
       <label className="form-control">
         <div className="label">
           <span className="label-text">Phone number</span>
