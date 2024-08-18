@@ -26,7 +26,7 @@ export const ProfileForm = ({
 
   return (
     <form className="w-full">
-      <label className="form-control">
+      <div className="form-control">
         <div className="label">
           <span className="label-text">Name</span>
         </div>
@@ -34,7 +34,7 @@ export const ProfileForm = ({
         <div className="label">
           {errors.name && <span className="label-text-alt text-error">{errors.name.message}</span>}
         </div>
-      </label>
+      </div>
       <div className="form-control">
         <div className="label">
           <span className="label-text">Gender</span>
@@ -57,7 +57,7 @@ export const ProfileForm = ({
           {errors.gender && <span className="label-text-alt text-error">{errors.gender.message}</span>}
         </div>
       </div>
-      <label className="form-control">
+      <div className="form-control">
         <div className="label">
           <span className="label-text">Phone number</span>
         </div>
@@ -88,8 +88,8 @@ export const ProfileForm = ({
             <span className="label-text-alt text-error">{errors.phoneNumbers.root.message}</span>
           )}
         </div>
-      </label>
-      <label className="form-control">
+      </div>
+      <div className="form-control">
         <div className="label">
           <span className="label-text">Bio (optional)</span>
         </div>
@@ -97,7 +97,7 @@ export const ProfileForm = ({
         <div className="label">
           {errors.bio && <span className="label-text-alt text-error">{errors.bio.message}</span>}
         </div>
-      </label>
+      </div>
       <div className="card-actions mt-4 w-full justify-center">
         <button type="button" className="btn btn-neutral btn-block sm:btn-wide" onClick={goToPreviousStep}>
           Back

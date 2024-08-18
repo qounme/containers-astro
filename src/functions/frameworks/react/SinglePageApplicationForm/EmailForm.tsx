@@ -17,7 +17,7 @@ export const EmailForm = ({
 
   return (
     <form className="w-full">
-      <label className="form-control">
+      <div className="form-control">
         <div className="label">
           <span className="label-text">Email</span>
         </div>
@@ -25,7 +25,7 @@ export const EmailForm = ({
         <div className="label">
           {errors.email && <span className="label-text-alt text-error">{errors.email.message}</span>}
         </div>
-      </label>
+      </div>
       <div className="card-actions mt-4 w-full justify-center">
         <button
           type="button"

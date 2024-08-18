@@ -23,7 +23,7 @@ export const PasswordForm = ({
 
   return (
     <form className="w-full">
-      <label className="form-control">
+      <div className="form-control">
         <div className="label">
           <span className="label-text">Password</span>
           <span className="label-text-alt ml-2">Minimum 8 characters with letters and numbers.</span>
@@ -32,8 +32,8 @@ export const PasswordForm = ({
         <div className="label">
           {errors.password && <span className="label-text-alt text-error">{errors.password.message}</span>}
         </div>
-      </label>
-      <label className="form-control">
+      </div>
+      <div className="form-control">
         <div className="label">
           <span className="label-text">Password (confirmation)</span>
         </div>
@@ -43,7 +43,7 @@ export const PasswordForm = ({
             <span className="label-text-alt text-error">{errors.passwordConfirmation.message}</span>
           )}
         </div>
-      </label>
+      </div>
       <div className="card-actions mt-4 w-full justify-center">
         <button type="button" className="btn btn-neutral btn-block sm:btn-wide" onClick={goToPreviousStep}>
           Back
