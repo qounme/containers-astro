@@ -14,6 +14,7 @@ export const ProfileForm = ({
     register,
     formState: { errors },
     getFieldState,
+    watch,
     trigger,
   } = useSinglePageApplicationForm
   const isInValid = () =>
@@ -106,6 +107,20 @@ export const ProfileForm = ({
           <input type="checkbox" className="checkbox" {...register('emailSubscription')} />
           <span className="label-text ml-4">Subscribe</span>
         </label>
+        {watch('emailSubscription') && (
+          <>
+            <div className="divider my-0"></div>
+            <label className="label mr-auto cursor-pointer justify-start py-1">
+              <input type="checkbox" className="checkbox checkbox-sm" {...register('newEmailsSubscribed')} />
+              <span className="label-text ml-4">New messages</span>
+            </label>
+            <label className="label mr-auto cursor-pointer justify-start py-1">
+              <input type="checkbox" className="checkbox checkbox-sm" {...register('marketingEmailsSubscribed')} />
+              <span className="label-text ml-4">Marketing emails</span>
+            </label>
+            <div className="divider my-0"></div>
+          </>
+        )}
         <div className="label">
           {errors.emailSubscription && (
             <span className="label-text-alt text-error">{errors.emailSubscription.message}</span>

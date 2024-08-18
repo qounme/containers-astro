@@ -22,6 +22,8 @@ export const singlePageApplicationFormSchema = z
       .refine(validatePhoneNumber, { message: 'Please enter your phone number.' }),
     bio: z.string().max(BIO_LENGTH_LIMIT, { message: `Your bio must be within ${BIO_LENGTH_LIMIT} characters.` }),
     emailSubscription: z.boolean(),
+    newEmailsSubscribed: z.boolean(),
+    marketingEmailsSubscribed: z.boolean(),
     // ステップ 3
     password: z.string().regex(PASSWORD_REGEX, { message: 'Please enter the password.' }),
     passwordConfirmation: z.string(),

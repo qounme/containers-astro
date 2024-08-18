@@ -63,6 +63,39 @@ export const ConfirmationForm = ({
       </div>
       <div className="form-control">
         <div className="label">
+          <span className="label-text">Email subscription</span>
+        </div>
+        <div className="divider my-0"></div>
+        {getValues('emailSubscription') && (
+          <>
+            <div className="label mr-auto justify-start py-1">
+              <input
+                type="checkbox"
+                className="checkbox checkbox-sm cursor-default"
+                checked={getValues('newEmailsSubscribed')}
+              />
+              <span className="label-text ml-4">New messages</span>
+            </div>
+            <div className="label mr-auto justify-start py-1">
+              <input
+                type="checkbox"
+                className="checkbox checkbox-sm cursor-default"
+                checked={getValues('marketingEmailsSubscribed')}
+              />
+              <span className="label-text ml-4">Marketing emails</span>
+            </div>
+          </>
+        )}
+        {!getValues('emailSubscription') && (
+          <div className="label">
+            <span className="label-text">No subscribed emails</span>
+          </div>
+        )}
+        <div className="divider my-0"></div>
+        <div className="label"></div>
+      </div>
+      <div className="form-control">
+        <div className="label">
           <span className="label-text">Password</span>
         </div>
         <p className="input input-bordered flex items-center bg-base-200">{'*'.repeat(getValues('password').length)}</p>
