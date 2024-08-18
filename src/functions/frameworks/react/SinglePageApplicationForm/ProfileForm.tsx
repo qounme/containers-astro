@@ -65,21 +65,21 @@ export const ProfileForm = ({
           <input
             type="text"
             maxLength={3}
-            className="input input-bordered w-1/4"
+            className="input input-bordered w-1/4 min-w-[4.75rem]"
             {...register('phoneNumbers.0', { onChange: () => trigger('phoneNumbers') })}
           />
           <span>-</span>
           <input
             type="text"
             maxLength={4}
-            className="input input-bordered w-1/4"
+            className="input input-bordered w-1/4 min-w-[4.75rem]"
             {...register('phoneNumbers.1', { onChange: () => trigger('phoneNumbers') })}
           />
           <span>-</span>
           <input
             type="text"
             maxLength={4}
-            className="input input-bordered w-1/4"
+            className="input input-bordered w-1/4 min-w-[4.75rem]"
             {...register('phoneNumbers.2', { onChange: () => trigger('phoneNumbers') })}
           />
         </div>
