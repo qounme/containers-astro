@@ -21,6 +21,7 @@ export const SinglePageApplicationForm = () => {
       gender: undefined,
       phoneNumbers: ['', '', ''],
       bio: '',
+      emailSubscription: true,
       password: '',
       passwordConfirmation: '',
     },

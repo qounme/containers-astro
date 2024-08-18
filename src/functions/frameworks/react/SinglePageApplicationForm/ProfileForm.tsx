@@ -98,6 +98,20 @@ export const ProfileForm = ({
           {errors.bio && <span className="label-text-alt text-error">{errors.bio.message}</span>}
         </div>
       </div>
+      <div className="form-control">
+        <div className="label">
+          <span className="label-text">Email subscription</span>
+        </div>
+        <label className="label mr-auto cursor-pointer justify-start">
+          <input type="checkbox" className="checkbox" {...register('emailSubscription')} />
+          <span className="label-text ml-4">Subscribe</span>
+        </label>
+        <div className="label">
+          {errors.emailSubscription && (
+            <span className="label-text-alt text-error">{errors.emailSubscription.message}</span>
+          )}
+        </div>
+      </div>
       <div className="card-actions mt-4 w-full justify-center">
         <button type="button" className="btn btn-neutral btn-block sm:btn-wide" onClick={goToPreviousStep}>
           Back
