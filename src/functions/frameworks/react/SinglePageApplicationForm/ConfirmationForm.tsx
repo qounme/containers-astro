@@ -31,16 +31,16 @@ export const ConfirmationForm = ({
       </div>
       <div className="form-control">
         <div className="label">
-          <span className="label-text">Gender</span>
+          <span className="label-text">Name</span>
         </div>
-        <p className="input input-bordered flex items-center bg-base-200">{getValues('gender')}</p>
+        <p className="input input-bordered flex items-center bg-base-200">{getValues('name')}</p>
         <div className="label"></div>
       </div>
       <div className="form-control">
         <div className="label">
-          <span className="label-text">Name</span>
+          <span className="label-text">Gender</span>
         </div>
-        <p className="input input-bordered flex items-center bg-base-200">{getValues('name')}</p>
+        <p className="input input-bordered flex items-center bg-base-200">{getValues('gender')}</p>
         <div className="label"></div>
       </div>
       <div className="form-control">
@@ -71,6 +71,7 @@ export const ConfirmationForm = ({
             <div className="label mr-auto justify-start py-1">
               <input
                 type="checkbox"
+                readOnly
                 className="checkbox checkbox-sm cursor-default"
                 checked={getValues('newEmailsSubscribed')}
               />
@@ -79,6 +80,7 @@ export const ConfirmationForm = ({
             <div className="label mr-auto justify-start py-1">
               <input
                 type="checkbox"
+                readOnly
                 className="checkbox checkbox-sm cursor-default"
                 checked={getValues('marketingEmailsSubscribed')}
               />
