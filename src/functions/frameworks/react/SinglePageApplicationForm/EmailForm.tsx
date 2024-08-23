@@ -1,13 +1,14 @@
 import type { UseFormReturn } from 'react-hook-form'
 import type { SinglePageApplicationFormSchema } from './schema'
+import { useContext } from 'react'
+import { SinglePageApplicationFormContext } from './context'
 
 export const EmailForm = ({
   useSinglePageApplicationForm,
-  goToNextStep,
 }: {
   useSinglePageApplicationForm: UseFormReturn<SinglePageApplicationFormSchema>
-  goToNextStep: () => void
 }) => {
+  const { incrementStep } = useContext(SinglePageApplicationFormContext)
   const {
     register,
     formState: { errors },
@@ -31,7 +32,7 @@ export const EmailForm = ({
           type="button"
           disabled={isInValid()}
           className="btn btn-primary btn-block sm:btn-wide"
-          onClick={goToNextStep}>
+          onClick={incrementStep}>
           Next
         </button>
       </div>

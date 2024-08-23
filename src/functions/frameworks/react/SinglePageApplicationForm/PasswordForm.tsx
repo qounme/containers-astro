@@ -1,15 +1,14 @@
 import type { UseFormReturn } from 'react-hook-form'
 import type { SinglePageApplicationFormSchema } from './schema'
+import { useContext } from 'react'
+import { SinglePageApplicationFormContext } from './context'
 
 export const PasswordForm = ({
   useSinglePageApplicationForm,
-  goToNextStep,
-  goToPreviousStep,
 }: {
   useSinglePageApplicationForm: UseFormReturn<SinglePageApplicationFormSchema>
-  goToNextStep: () => void
-  goToPreviousStep: () => void
 }) => {
+  const { incrementStep, decrementStep } = useContext(SinglePageApplicationFormContext)
   const {
     register,
     formState: { errors },
@@ -45,14 +44,14 @@ export const PasswordForm = ({
         </div>
       </div>
       <div className="card-actions mt-4 w-full justify-center">
-        <button type="button" className="btn btn-neutral btn-block sm:btn-wide" onClick={goToPreviousStep}>
+        <button type="button" className="btn btn-neutral btn-block sm:btn-wide" onClick={decrementStep}>
           Back
         </button>
         <button
           type="button"
           disabled={isInValid()}
           className="btn btn-primary btn-block sm:btn-wide"
-          onClick={goToNextStep}>
+          onClick={incrementStep}>
           Next
         </button>
       </div>
