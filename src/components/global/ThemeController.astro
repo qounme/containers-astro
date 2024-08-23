@@ -37,7 +37,7 @@ const isDarkTheme = Astro.cookies.get('theme')?.value === 'dark'
   }
   const updateTheme = (theme: string) => {
     document.documentElement.setAttribute('data-theme', theme)
-    document.cookie = `theme=${encodeURIComponent(theme)};max-age=${60 * 60 * 24 * 365}`
+    document.cookie = `theme=${encodeURIComponent(theme)};max-age=${60 * 60 * 24 * 365};path=/`
   }
   const restartThemeControllerIconAnimation = () => {
     themeControllerSunnyIcon.restartAnimation()
