@@ -1,6 +1,6 @@
 ---
 import GlobalLayout from '../layouts/GlobalLayout.astro'
-import { RouteHelper } from '../helpers/route_helper'
+import { routes } from '../configs/routes'
 ---
 
 <GlobalLayout title="Containers Astro">
@@ -13,7 +13,7 @@ import { RouteHelper } from '../helpers/route_helper'
     <h2 class="my-6 text-xl sm:text-2xl">UI Components</h2>
     <div class="grid w-full">
       <a
-        href={RouteHelper.FRAMEWORKS_REACT_SINGLE_PAGE_APPLICATION_FORM}
+        href={routes.frameworks.react.singlePageApplicationForm}
         class="card bg-base-200 shadow-lg transition-transform hover:scale-110 sm:w-1/2 md:w-1/3 xl:w-1/4">
         <div class="card-body">
           <h5 class="text-lg">Single Page Application Form</h5>
