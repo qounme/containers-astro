@@ -23,7 +23,7 @@ type FormDefaultValue = UseFormOptionProperty<UseFormOption, 'defaultValues'>
 const formDefaultValue: () => FormDefaultValue = () => ({
   email: '',
   name: '',
-  gender: undefined,
+  gender: 'undisclosed',
   phoneNumbers: ['', '', ''],
   bio: '',
   emailSubscription: true,

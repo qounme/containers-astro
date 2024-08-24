@@ -17,7 +17,7 @@ const emailFormSchema = () =>
 const profileFormSchema = () =>
   z.object({
     name: z.string().min(1, { message: 'Please enter your name.' }),
-    gender: z.enum(['male', 'female', 'non-binary']),
+    gender: z.enum(['male', 'female', 'non-binary', 'undisclosed']),
     phoneNumbers: z
       .tuple([z.string(), z.string(), z.string()])
       .refine(validatePhoneNumber, { message: 'Please enter your phone number.', path: [''] }),

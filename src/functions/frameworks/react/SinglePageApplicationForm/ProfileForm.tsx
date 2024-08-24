@@ -32,7 +32,7 @@ export const ProfileForm = () => {
         <div className="label">
           <span className="label-text">Gender</span>
         </div>
-        <div className="flex flex-col items-start justify-center sm:flex-row sm:items-center sm:justify-start sm:gap-8">
+        <div className="flex flex-col items-start justify-center md:flex-row md:items-center md:justify-start md:gap-2 xl:gap-4">
           <label className="label col-start-1 cursor-pointer">
             <input type="radio" className="radio" value="male" {...register('gender')} />
             <span className="label-text ml-4">Male</span>
@@ -45,12 +45,12 @@ export const ProfileForm = () => {
             <input type="radio" className="radio" value="non-binary" {...register('gender')} />
             <span className="label-text ml-4">Non-binary</span>
           </label>
+          <label className="label col-start-3 cursor-pointer">
+            <input type="radio" className="radio" value="undisclosed" {...register('gender')} />
+            <span className="label-text ml-4">Undisclosed</span>
+          </label>
         </div>
-        <div className="label">
-          {touchedFields.gender && errors.gender && (
-            <span className="label-text-alt text-error">{errors.gender.message}</span>
-          )}
-        </div>
+        <div className="label"></div>
       </div>
       <div className="form-control">
         <div className="label">
