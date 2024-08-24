@@ -115,11 +115,7 @@ export const ProfileForm = () => {
             <div className="divider my-0"></div>
           </>
         )}
-        <div className="label">
-          {touchedFields.emailSubscription && errors.emailSubscription && (
-            <span className="label-text-alt text-error">{errors.emailSubscription.message}</span>
-          )}
-        </div>
+        <div className="label"></div>
       </div>
       <div className="card-actions mt-4 w-full justify-center">
         <button type="button" className="btn btn-neutral btn-block sm:btn-wide" onClick={decrementStep}>
