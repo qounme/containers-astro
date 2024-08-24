@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { SinglePageApplicationFormContext } from './context'
+import { profileFormProperties } from './schema'
 
 export const ProfileForm = () => {
   const {
@@ -12,8 +13,7 @@ export const ProfileForm = () => {
       watch,
     },
   } = useContext(SinglePageApplicationFormContext)
-  const isInValid = () =>
-    getFieldState('name').invalid || getFieldState('gender').invalid || getFieldState('phoneNumbers').invalid
+  const isInValid = () => profileFormProperties.some((property) => getFieldState(property).invalid)
 
   return (
     <form className="w-full">

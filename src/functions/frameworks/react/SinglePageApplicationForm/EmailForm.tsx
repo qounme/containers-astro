@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { SinglePageApplicationFormContext } from './context'
+import { emailFormProperties } from './schema'
 
 export const EmailForm = () => {
   const {
@@ -11,7 +12,7 @@ export const EmailForm = () => {
     },
     isFormInitialized,
   } = useContext(SinglePageApplicationFormContext)
-  const isInValid = () => getFieldState('email').invalid
+  const isInValid = () => emailFormProperties.some((property) => getFieldState(property).invalid)
 
   return (
     <form className="w-full">

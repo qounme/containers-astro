@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { SinglePageApplicationFormContext } from './context'
+import { passwordFormProperties } from './schema'
 
 export const PasswordForm = () => {
   const {
@@ -11,7 +12,7 @@ export const PasswordForm = () => {
       getFieldState,
     },
   } = useContext(SinglePageApplicationFormContext)
-  const isInValid = () => getFieldState('password').invalid || getFieldState('passwordConfirmation').invalid
+  const isInValid = () => passwordFormProperties.some((property) => getFieldState(property).invalid)
 
   return (
     <form className="w-full">

@@ -10,27 +10,35 @@ const validatePhoneNumber = (phoneNumbers: [string, string, string]) =>
 const validatePassword = (data: { password: string; passwordConfirmation: string }) =>
   data.password === data.passwordConfirmation
 
-const emailFormSchema = () => ({
-  email: z.string().regex(EMAIL_REGEX, { message: 'Please enter your email.' }),
-})
-const profileFormSchema = () => ({
-  name: z.string().min(1, { message: 'Please enter your name.' }),
-  gender: z.enum(['male', 'female', 'non-binary']),
-  phoneNumbers: z
-    .tuple([z.string(), z.string(), z.string()])
-    .refine(validatePhoneNumber, { message: 'Please enter your phone number.', path: [''] }),
-  bio: z.string().max(BIO_LENGTH_LIMIT, { message: `Your bio must be within ${BIO_LENGTH_LIMIT} characters.` }),
-  emailSubscription: z.boolean(),
-  newEmailsSubscribed: z.boolean(),
-  marketingEmailsSubscribed: z.boolean(),
-})
-const passwordFormSchema = () => ({
-  password: z.string().regex(PASSWORD_REGEX, { message: 'Please enter the password.' }),
-  passwordConfirmation: z.string().min(1, { message: 'Please enter the same password again.' }),
-})
+const emailFormSchema = () =>
+  z.object({
+    email: z.string().regex(EMAIL_REGEX, { message: 'Please enter your email.' }),
+  })
+const profileFormSchema = () =>
+  z.object({
+    name: z.string().min(1, { message: 'Please enter your name.' }),
+    gender: z.enum(['male', 'female', 'non-binary']),
+    phoneNumbers: z
+      .tuple([z.string(), z.string(), z.string()])
+      .refine(validatePhoneNumber, { message: 'Please enter your phone number.', path: [''] }),
+    bio: z.string().max(BIO_LENGTH_LIMIT, { message: `Your bio must be within ${BIO_LENGTH_LIMIT} characters.` }),
+    emailSubscription: z.boolean(),
+    newEmailsSubscribed: z.boolean(),
+    marketingEmailsSubscribed: z.boolean(),
+  })
+const passwordFormSchema = () =>
+  z.object({
+    password: z.string().regex(PASSWORD_REGEX, { message: 'Please enter the password.' }),
+    passwordConfirmation: z.string().min(1, { message: 'Please enter the same password again.' }),
+  })
 
-export const singlePageApplicationFormSchema = z
-  .object({ ...emailFormSchema(), ...profileFormSchema(), ...passwordFormSchema() })
+export const emailFormProperties = emailFormSchema().keyof()._def.values
+export const profileFormProperties = profileFormSchema().keyof()._def.values
+export const passwordFormProperties = passwordFormSchema().keyof()._def.values
+
+export const singlePageApplicationFormSchema = emailFormSchema()
+  .merge(profileFormSchema())
+  .merge(passwordFormSchema())
   .refine(validatePassword, { message: 'Please enter the same password again.', path: ['passwordConfirmation'] })
 
 export type SinglePageApplicationFormSchema = z.infer<typeof singlePageApplicationFormSchema>
