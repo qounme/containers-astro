@@ -9,6 +9,7 @@ export const EmailForm = () => {
       formState: { errors },
       getFieldState,
     },
+    isFormInitialized,
   } = useContext(SinglePageApplicationFormContext)
   const isInValid = () => !getFieldState('email').isDirty || getFieldState('email').invalid
 
@@ -26,7 +27,7 @@ export const EmailForm = () => {
       <div className="card-actions mt-4 w-full justify-center">
         <button
           type="button"
-          disabled={isInValid()}
+          disabled={!isFormInitialized || isInValid()}
           className="btn btn-primary btn-block sm:btn-wide"
           onClick={incrementStep}>
           Next
