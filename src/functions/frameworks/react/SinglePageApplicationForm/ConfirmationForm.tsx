@@ -68,6 +68,7 @@ export const ConfirmationForm = () => {
               <input
                 type="checkbox"
                 readOnly
+                disabled
                 className="checkbox checkbox-sm cursor-default"
                 checked={getValues('newEmailsSubscribed')}
               />
@@ -77,6 +78,7 @@ export const ConfirmationForm = () => {
               <input
                 type="checkbox"
                 readOnly
+                disabled
                 className="checkbox checkbox-sm cursor-default"
                 checked={getValues('marketingEmailsSubscribed')}
               />
