@@ -6,10 +6,15 @@ import {
   SinglePageApplicationFormContext,
   singlePageApplicationFormContextDefaultValue,
 } from './SinglePageApplicationForm/context'
+import { useEffect } from 'react'
 
 export const SinglePageApplicationForm = () => {
   const contextValue = singlePageApplicationFormContextDefaultValue()
   const stepClassName = (n: number) => (contextValue.step >= n ? 'step step-primary' : 'step')
+
+  useEffect(() => {
+    contextValue.initializeForm()
+  }, [])
 
   return (
     <SinglePageApplicationFormContext.Provider value={contextValue}>
