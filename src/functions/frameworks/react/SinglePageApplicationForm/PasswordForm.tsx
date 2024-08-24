@@ -7,15 +7,11 @@ export const PasswordForm = () => {
     decrementStep,
     useSinglePageApplicationForm: {
       register,
-      formState: { errors },
+      formState: { errors, touchedFields },
       getFieldState,
     },
   } = useContext(SinglePageApplicationFormContext)
-  const isInValid = () =>
-    !getFieldState('password').isDirty ||
-    !getFieldState('passwordConfirmation').isDirty ||
-    getFieldState('password').invalid ||
-    getFieldState('passwordConfirmation').invalid
+  const isInValid = () => getFieldState('password').invalid || getFieldState('passwordConfirmation').invalid
 
   return (
     <form className="w-full">
@@ -26,7 +22,9 @@ export const PasswordForm = () => {
         </div>
         <input type="password" className="input input-bordered" {...register('password')} />
         <div className="label">
-          {errors.password && <span className="label-text-alt text-error">{errors.password.message}</span>}
+          {touchedFields.password && errors.password && (
+            <span className="label-text-alt text-error">{errors.password.message}</span>
+          )}
         </div>
       </div>
       <div className="form-control">
@@ -35,7 +33,7 @@ export const PasswordForm = () => {
         </div>
         <input type="password" className="input input-bordered" {...register('passwordConfirmation')} />
         <div className="label">
-          {errors.passwordConfirmation && (
+          {touchedFields.passwordConfirmation && errors.passwordConfirmation && (
             <span className="label-text-alt text-error">{errors.passwordConfirmation.message}</span>
           )}
         </div>

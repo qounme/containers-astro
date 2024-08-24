@@ -19,14 +19,14 @@ export const singlePageApplicationFormSchema = z
     gender: z.enum(['male', 'female', 'non-binary']),
     phoneNumbers: z
       .tuple([z.string(), z.string(), z.string()])
-      .refine(validatePhoneNumber, { message: 'Please enter your phone number.' }),
+      .refine(validatePhoneNumber, { message: 'Please enter your phone number.', path: [''] }),
     bio: z.string().max(BIO_LENGTH_LIMIT, { message: `Your bio must be within ${BIO_LENGTH_LIMIT} characters.` }),
     emailSubscription: z.boolean(),
     newEmailsSubscribed: z.boolean(),
     marketingEmailsSubscribed: z.boolean(),
     // ステップ 3
     password: z.string().regex(PASSWORD_REGEX, { message: 'Please enter the password.' }),
-    passwordConfirmation: z.string(),
+    passwordConfirmation: z.string().min(1, { message: 'Please enter the same password again.' }),
   })
   .refine(validatePassword, { message: 'Please enter the same password again.', path: ['passwordConfirmation'] })
 

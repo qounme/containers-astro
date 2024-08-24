@@ -7,19 +7,13 @@ export const ProfileForm = () => {
     decrementStep,
     useSinglePageApplicationForm: {
       register,
-      formState: { errors },
+      formState: { errors, touchedFields },
       getFieldState,
       watch,
-      trigger,
     },
   } = useContext(SinglePageApplicationFormContext)
   const isInValid = () =>
-    !getFieldState('name').isDirty ||
-    !getFieldState('gender').isDirty ||
-    !getFieldState('phoneNumbers').isDirty ||
-    getFieldState('name').invalid ||
-    getFieldState('gender').invalid ||
-    getFieldState('phoneNumbers').invalid
+    getFieldState('name').invalid || getFieldState('gender').invalid || getFieldState('phoneNumbers').invalid
 
   return (
     <form className="w-full">
@@ -29,7 +23,9 @@ export const ProfileForm = () => {
         </div>
         <input type="text" className="input input-bordered" {...register('name')} />
         <div className="label">
-          {errors.name && <span className="label-text-alt text-error">{errors.name.message}</span>}
+          {touchedFields.name && errors.name && (
+            <span className="label-text-alt text-error">{errors.name.message}</span>
+          )}
         </div>
       </div>
       <div className="form-control">
@@ -51,7 +47,9 @@ export const ProfileForm = () => {
           </label>
         </div>
         <div className="label">
-          {errors.gender && <span className="label-text-alt text-error">{errors.gender.message}</span>}
+          {touchedFields.gender && errors.gender && (
+            <span className="label-text-alt text-error">{errors.gender.message}</span>
+          )}
         </div>
       </div>
       <div className="form-control">
@@ -63,26 +61,26 @@ export const ProfileForm = () => {
             type="text"
             maxLength={3}
             className="input input-bordered w-1/4 min-w-[4.75rem]"
-            {...register('phoneNumbers.0', { onChange: () => trigger('phoneNumbers') })}
+            {...register('phoneNumbers.0')}
           />
           <span>-</span>
           <input
             type="text"
             maxLength={4}
             className="input input-bordered w-1/4 min-w-[4.75rem]"
-            {...register('phoneNumbers.1', { onChange: () => trigger('phoneNumbers') })}
+            {...register('phoneNumbers.1')}
           />
           <span>-</span>
           <input
             type="text"
             maxLength={4}
             className="input input-bordered w-1/4 min-w-[4.75rem]"
-            {...register('phoneNumbers.2', { onChange: () => trigger('phoneNumbers') })}
+            {...register('phoneNumbers.2')}
           />
         </div>
         <div className="label">
-          {errors.phoneNumbers?.root && (
-            <span className="label-text-alt text-error">{errors.phoneNumbers.root.message}</span>
+          {touchedFields.phoneNumbers && errors.phoneNumbers && (
+            <span className="label-text-alt text-error">{errors.phoneNumbers.message}</span>
           )}
         </div>
       </div>
@@ -92,7 +90,7 @@ export const ProfileForm = () => {
         </div>
         <input type="text" className="input input-bordered" {...register('bio')} />
         <div className="label">
-          {errors.bio && <span className="label-text-alt text-error">{errors.bio.message}</span>}
+          {touchedFields.bio && errors.bio && <span className="label-text-alt text-error">{errors.bio.message}</span>}
         </div>
       </div>
       <div className="form-control">
@@ -118,7 +116,7 @@ export const ProfileForm = () => {
           </>
         )}
         <div className="label">
-          {errors.emailSubscription && (
+          {touchedFields.emailSubscription && errors.emailSubscription && (
             <span className="label-text-alt text-error">{errors.emailSubscription.message}</span>
           )}
         </div>
