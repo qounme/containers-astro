@@ -1,19 +1,15 @@
-import type { UseFormReturn } from 'react-hook-form'
-import type { SinglePageApplicationFormSchema } from './schema'
 import { useContext } from 'react'
 import { SinglePageApplicationFormContext } from './context'
 
-export const EmailForm = ({
-  useSinglePageApplicationForm,
-}: {
-  useSinglePageApplicationForm: UseFormReturn<SinglePageApplicationFormSchema>
-}) => {
-  const { incrementStep } = useContext(SinglePageApplicationFormContext)
+export const EmailForm = () => {
   const {
-    register,
-    formState: { errors },
-    getFieldState,
-  } = useSinglePageApplicationForm
+    incrementStep,
+    useSinglePageApplicationForm: {
+      register,
+      formState: { errors },
+      getFieldState,
+    },
+  } = useContext(SinglePageApplicationFormContext)
   const isInValid = () => !getFieldState('email').isDirty || getFieldState('email').invalid
 
   return (

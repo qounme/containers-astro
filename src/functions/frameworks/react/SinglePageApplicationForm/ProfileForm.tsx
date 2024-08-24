@@ -1,21 +1,18 @@
-import type { UseFormReturn } from 'react-hook-form'
-import type { SinglePageApplicationFormSchema } from './schema'
 import { useContext } from 'react'
 import { SinglePageApplicationFormContext } from './context'
 
-export const ProfileForm = ({
-  useSinglePageApplicationForm,
-}: {
-  useSinglePageApplicationForm: UseFormReturn<SinglePageApplicationFormSchema>
-}) => {
-  const { incrementStep, decrementStep } = useContext(SinglePageApplicationFormContext)
+export const ProfileForm = () => {
   const {
-    register,
-    formState: { errors },
-    getFieldState,
-    watch,
-    trigger,
-  } = useSinglePageApplicationForm
+    incrementStep,
+    decrementStep,
+    useSinglePageApplicationForm: {
+      register,
+      formState: { errors },
+      getFieldState,
+      watch,
+      trigger,
+    },
+  } = useContext(SinglePageApplicationFormContext)
   const isInValid = () =>
     !getFieldState('name').isDirty ||
     !getFieldState('gender').isDirty ||

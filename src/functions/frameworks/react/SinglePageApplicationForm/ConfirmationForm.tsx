@@ -1,20 +1,16 @@
-import type { UseFormReturn } from 'react-hook-form'
-import type { SinglePageApplicationFormSchema } from './schema'
 import { useContext, useEffect } from 'react'
 import { SinglePageApplicationFormContext } from './context'
 
-export const ConfirmationForm = ({
-  useSinglePageApplicationForm,
-}: {
-  useSinglePageApplicationForm: UseFormReturn<SinglePageApplicationFormSchema>
-}) => {
-  const { decrementStep } = useContext(SinglePageApplicationFormContext)
+export const ConfirmationForm = () => {
   const {
-    formState: { isValid },
-    handleSubmit,
-    getValues,
-    trigger,
-  } = useSinglePageApplicationForm
+    decrementStep,
+    useSinglePageApplicationForm: {
+      formState: { isValid },
+      handleSubmit,
+      getValues,
+      trigger,
+    },
+  } = useContext(SinglePageApplicationFormContext)
 
   useEffect(() => {
     trigger()

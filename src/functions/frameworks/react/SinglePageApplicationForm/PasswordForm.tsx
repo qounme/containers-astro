@@ -1,19 +1,16 @@
-import type { UseFormReturn } from 'react-hook-form'
-import type { SinglePageApplicationFormSchema } from './schema'
 import { useContext } from 'react'
 import { SinglePageApplicationFormContext } from './context'
 
-export const PasswordForm = ({
-  useSinglePageApplicationForm,
-}: {
-  useSinglePageApplicationForm: UseFormReturn<SinglePageApplicationFormSchema>
-}) => {
-  const { incrementStep, decrementStep } = useContext(SinglePageApplicationFormContext)
+export const PasswordForm = () => {
   const {
-    register,
-    formState: { errors },
-    getFieldState,
-  } = useSinglePageApplicationForm
+    incrementStep,
+    decrementStep,
+    useSinglePageApplicationForm: {
+      register,
+      formState: { errors },
+      getFieldState,
+    },
+  } = useContext(SinglePageApplicationFormContext)
   const isInValid = () =>
     !getFieldState('password').isDirty ||
     !getFieldState('passwordConfirmation').isDirty ||
