@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useRef, useState } from 'react'
 import { useForm, type UseFormReturn } from 'react-hook-form'
 import { singlePageApplicationFormSchema, type SinglePageApplicationFormSchema } from './schema'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -8,6 +8,8 @@ type SinglePageApplicationFormContext = {
   incrementStep: () => void
   decrementStep: () => void
   useSinglePageApplicationForm: UseFormReturn<SinglePageApplicationFormSchema>
+  isFormInitialized: boolean
+  initializeForm: () => void
 }
 
 export const SinglePageApplicationFormContext = createContext<SinglePageApplicationFormContext>(
@@ -46,5 +48,17 @@ export const singlePageApplicationFormContextDefaultValue: () => SinglePageAppli
     defaultValues: formDefaultValue(),
   })
 
-  return { step, incrementStep, decrementStep, useSinglePageApplicationForm }
+  const isFormInitialized = useRef(false)
+  const initializeForm = () => {
+    useSinglePageApplicationForm.trigger().then(() => (isFormInitialized.current = true))
+  }
+
+  return {
+    step,
+    incrementStep,
+    decrementStep,
+    useSinglePageApplicationForm,
+    isFormInitialized: isFormInitialized.current,
+    initializeForm,
+  }
 }
