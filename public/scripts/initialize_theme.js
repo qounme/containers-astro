@@ -5,10 +5,4 @@
  *
  * @license MIT
  */
-;(() => {
-  const colorScheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  const theme = document.cookie.match(/theme=(light|dark)(;|$)/)?.[1] || colorScheme
-
-  document.documentElement.setAttribute('data-theme', theme)
-  document.cookie = `theme=${encodeURIComponent(theme)};max-age=${60 * 60 * 24 * 365};path=/`
-})()
+(()=>{const e=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light",t=localStorage.getItem("theme")||e;document.documentElement.setAttribute("data-theme",t),localStorage.setItem("theme",t)})();

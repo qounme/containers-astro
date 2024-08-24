@@ -1,53 +1,38 @@
 ---
-const isDarkTheme = Astro.cookies.get('theme')?.value === 'dark'
+
 ---
 
-<label class="grid cursor-pointer place-items-center p-2">
-  <input
-    type="checkbox"
-    id="theme-controller"
-    class="toggle col-span-2 col-start-1 row-start-1 bg-base-content hover:bg-base-content"
-    checked={isDarkTheme}
-  />
-  <iconify-icon
-    icon="line-md:moon-alt-loop"
-    mode="svg"
-    width="1rem"
-    height="1rem"
-    id="theme-controller-moon-icon"
-    class="col-start-1 row-start-1 inline-block h-4 w-4"></iconify-icon>
-  <iconify-icon
-    icon="line-md:sunny-outline-loop"
-    mode="svg"
-    width="1rem"
-    height="1rem"
-    id="theme-controller-sunny-icon"
-    class="col-start-2 row-start-1 inline-block h-4 w-4"></iconify-icon>
-</label>
+<div id="light-theme-controller" class="flex cursor-pointer place-content-center px-1 py-2 dark:hidden">
+  {/* ph:sun-fill */}
+  {/* @see https://icon-sets.iconify.design/ph/sun-fill/ */}
+  <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 256 256">
+    <path
+      fill="currentColor"
+      d="M120 40V16a8 8 0 0 1 16 0v24a8 8 0 0 1-16 0m8 24a64 64 0 1 0 64 64a64.07 64.07 0 0 0-64-64m-69.66 5.66a8 8 0 0 0 11.32-11.32l-16-16a8 8 0 0 0-11.32 11.32Zm0 116.68l-16 16a8 8 0 0 0 11.32 11.32l16-16a8 8 0 0 0-11.32-11.32M192 72a8 8 0 0 0 5.66-2.34l16-16a8 8 0 0 0-11.32-11.32l-16 16A8 8 0 0 0 192 72m5.66 114.34a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32-11.32ZM48 128a8 8 0 0 0-8-8H16a8 8 0 0 0 0 16h24a8 8 0 0 0 8-8m80 80a8 8 0 0 0-8 8v24a8 8 0 0 0 16 0v-24a8 8 0 0 0-8-8m112-88h-24a8 8 0 0 0 0 16h24a8 8 0 0 0 0-16"
+    ></path>
+  </svg>
+</div>
+<div id="dark-theme-controller" class="hidden cursor-pointer place-content-center px-1 py-2 dark:flex">
+  {/* ph:moon-stars-fill */}
+  {/* @see https://icon-sets.iconify.design/ph/moon-stars-fill/ */}
+  <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 256 256">
+    <path
+      fill="currentColor"
+      d="M240 96a8 8 0 0 1-8 8h-16v16a8 8 0 0 1-16 0v-16h-16a8 8 0 0 1 0-16h16V72a8 8 0 0 1 16 0v16h16a8 8 0 0 1 8 8m-96-40h8v8a8 8 0 0 0 16 0v-8h8a8 8 0 0 0 0-16h-8v-8a8 8 0 0 0-16 0v8h-8a8 8 0 0 0 0 16m65.14 94.33A88.07 88.07 0 0 1 105.67 46.86a8 8 0 0 0-10.6-9.06A96 96 0 1 0 218.2 160.93a8 8 0 0 0-9.06-10.6"
+    ></path>
+  </svg>
+</div>
 
 {/* テーマの更新 */}
 <script>
-  const themeController = document.getElementById('theme-controller')! as HTMLInputElement
-  // iconify icon web component は専用の型になるため any を設定しておく
-  const themeControllerSunnyIcon = document.getElementById('theme-controller-sunny-icon')! as any
-  const themeControllerMoonIcon = document.getElementById('theme-controller-moon-icon')! as any
+  const lightThemeController = document.getElementById('light-theme-controller')!
+  const darkThemeController = document.getElementById('dark-theme-controller')!
 
-  const ensureCheckboxState = () => {
-    themeController.checked = document.documentElement.getAttribute('data-theme') === 'dark'
-  }
-  const updateTheme = (theme: string) => {
+  const updateTheme = (theme: 'light' | 'dark') => {
     document.documentElement.setAttribute('data-theme', theme)
-    document.cookie = `theme=${encodeURIComponent(theme)};max-age=${60 * 60 * 24 * 365};path=/`
-  }
-  const restartThemeControllerIconAnimation = () => {
-    themeControllerSunnyIcon.restartAnimation()
-    themeControllerMoonIcon.restartAnimation()
+    localStorage.setItem('theme', theme)
   }
 
-  themeController.addEventListener('change', () => {
-    restartThemeControllerIconAnimation()
-    updateTheme(themeController.checked ? 'dark' : 'light')
-  })
-  // 初回リクエスト時などの cookies からテーマ情報が取得できない場合を考慮しておく
-  ensureCheckboxState()
+  lightThemeController.addEventListener('click', () => updateTheme('dark'))
+  darkThemeController.addEventListener('click', () => updateTheme('light'))
 </script>
