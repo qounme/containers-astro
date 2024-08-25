@@ -3,191 +3,191 @@ export async function GET() {
     JSON.stringify([
       {
         id: 1,
-        code: 'hokkaidou',
+        code: 'Hokkaido',
       },
       {
         id: 2,
-        code: 'aomori',
+        code: 'Aomori',
       },
       {
         id: 3,
-        code: 'iwate',
+        code: 'Iwate',
       },
       {
         id: 4,
-        code: 'miyagi',
+        code: 'Miyagi',
       },
       {
         id: 5,
-        code: 'akita',
+        code: 'Akita',
       },
       {
         id: 6,
-        code: 'yamagata',
+        code: 'Yamagata',
       },
       {
         id: 7,
-        code: 'fukushima',
+        code: 'Fukushima',
       },
       {
         id: 8,
-        code: 'ibaraki',
+        code: 'Ibaraki',
       },
       {
         id: 9,
-        code: 'tochigi',
+        code: 'Tochigi',
       },
       {
         id: 10,
-        code: 'gumma',
+        code: 'Gunma',
       },
       {
         id: 11,
-        code: 'saitama',
+        code: 'Saitama',
       },
       {
         id: 12,
-        code: 'chiba',
+        code: 'Chiba',
       },
       {
         id: 13,
-        code: 'tokyo',
+        code: 'Tokyo',
       },
       {
         id: 14,
-        code: 'kanagawa',
+        code: 'Kanagawa',
       },
       {
         id: 15,
-        code: 'niigata',
+        code: 'Niigata',
       },
       {
         id: 16,
-        code: 'toyama',
+        code: 'Toyama',
       },
       {
         id: 17,
-        code: 'ishikawa',
+        code: 'Ishikawa',
       },
       {
         id: 18,
-        code: 'fukui',
+        code: 'Fukui',
       },
       {
         id: 19,
-        code: 'yamanashi',
+        code: 'Yamanashi',
       },
       {
         id: 20,
-        code: 'nagano',
+        code: 'Nagano',
       },
       {
         id: 21,
-        code: 'gifu',
+        code: 'Gifu',
       },
       {
         id: 22,
-        code: 'shizuoka',
+        code: 'Shizuoka',
       },
       {
         id: 23,
-        code: 'aichi',
+        code: 'Aichi',
       },
       {
         id: 24,
-        code: 'mie',
+        code: 'Mie',
       },
       {
         id: 25,
-        code: 'shiga',
+        code: 'Shiga',
       },
       {
         id: 26,
-        code: 'kyoto',
+        code: 'Kyoto',
       },
       {
         id: 27,
-        code: 'osaka',
+        code: 'Osaka',
       },
       {
         id: 28,
-        code: 'hyogo',
+        code: 'Hyogo',
       },
       {
         id: 29,
-        code: 'nara',
+        code: 'Nara',
       },
       {
         id: 30,
-        code: 'wakayama',
+        code: 'Wakayama',
       },
       {
         id: 31,
-        code: 'tottori',
+        code: 'Tottori',
       },
       {
         id: 32,
-        code: 'shimane',
+        code: 'Shimane',
       },
       {
         id: 33,
-        code: 'okayama',
+        code: 'Okayama',
       },
       {
         id: 34,
-        code: 'hiroshima',
+        code: 'Hiroshima',
       },
       {
         id: 35,
-        code: 'yamaguchi',
+        code: 'Yamaguchi',
       },
       {
         id: 36,
-        code: 'tokushima',
+        code: 'Tokushima',
       },
       {
         id: 37,
-        code: 'kagawa',
+        code: 'Kagawa',
       },
       {
         id: 38,
-        code: 'ehime',
+        code: 'Ehime',
       },
       {
         id: 39,
-        code: 'kochi',
+        code: 'Kochi',
       },
       {
         id: 40,
-        code: 'fukuoka',
+        code: 'Fukuoka',
       },
       {
         id: 41,
-        code: 'saga',
+        code: 'Saga',
       },
       {
         id: 42,
-        code: 'nagasaki',
+        code: 'Nagasaki',
       },
       {
         id: 43,
-        code: 'kumamoto',
+        code: 'Kumamoto',
       },
       {
         id: 44,
-        code: 'oita',
+        code: 'Oita',
       },
       {
         id: 45,
-        code: 'miyazaki',
+        code: 'Miyazaki',
       },
       {
         id: 46,
-        code: 'kagoshima',
+        code: 'Kagoshima',
       },
       {
         id: 47,
-        code: 'okinawa',
+        code: 'Okinawa',
       },
     ]),
   )
