@@ -99,7 +99,7 @@ export const ProfileForm = () => {
       <div className="form-control">
         <div className="label">
           <span className="label-text">Hobbies (optional)</span>
-          <span className="label-text-alt">Maximum of 3 items.</span>
+          <span className="label-text-alt ml-2">Maximum of 3 items.</span>
         </div>
         <div className="grid gap-2">
           {fields.map((field, index) => (
