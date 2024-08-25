@@ -100,8 +100,8 @@ export const ProfileForm = () => {
         <select className="select select-bordered" {...register('prefecture')}>
           <option value="">---</option>
           {prefectures.map((prefecture) => (
-            <option key={prefecture.id} value={prefecture.name}>
-              {prefecture.name}
+            <option key={prefecture.id} value={prefecture.code}>
+              {prefecture.code}
             </option>
           ))}
         </select>
