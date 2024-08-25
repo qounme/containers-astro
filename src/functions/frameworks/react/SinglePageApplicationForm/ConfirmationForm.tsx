@@ -52,6 +52,13 @@ export const ConfirmationForm = () => {
       </div>
       <div className="form-control">
         <div className="label">
+          <span className="label-text">Prefecture</span>
+        </div>
+        <p className="input input-bordered flex items-center bg-base-200">{getValues('prefecture')}</p>
+        <div className="label"></div>
+      </div>
+      <div className="form-control">
+        <div className="label">
           <span className="label-text">Bio</span>
         </div>
         <p className="input input-bordered flex items-center bg-base-200">{getValues('bio')}</p>
