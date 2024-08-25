@@ -22,6 +22,7 @@ const profileFormSchema = () =>
       .tuple([z.string(), z.string(), z.string()])
       .refine(validatePhoneNumber, { message: 'Please enter your phone number.', path: [''] }),
     bio: z.string().max(BIO_LENGTH_LIMIT, { message: `Your bio must be within ${BIO_LENGTH_LIMIT} characters.` }),
+    hobbies: z.array(z.object({ value: z.string() })).max(3, { message: 'Hobbies can be entered up to three.' }),
     emailSubscription: z.boolean(),
     newEmailsSubscribed: z.boolean(),
     marketingEmailsSubscribed: z.boolean(),

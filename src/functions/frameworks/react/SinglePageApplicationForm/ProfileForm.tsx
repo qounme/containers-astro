@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { SinglePageApplicationFormContext } from './context'
 import { profileFormProperties } from './schema'
+import { useFieldArray } from 'react-hook-form'
 
 export const ProfileForm = () => {
   const {
@@ -11,8 +12,10 @@ export const ProfileForm = () => {
       formState: { errors, touchedFields },
       getFieldState,
       watch,
+      control,
     },
   } = useContext(SinglePageApplicationFormContext)
+  const { fields, insert, remove } = useFieldArray({ control, name: 'hobbies' })
   const isInValid = () => profileFormProperties.some((property) => getFieldState(property).invalid)
 
   return (
@@ -91,6 +94,53 @@ export const ProfileForm = () => {
         <input type="text" className="input input-bordered" {...register('bio')} />
         <div className="label">
           {touchedFields.bio && errors.bio && <span className="label-text-alt text-error">{errors.bio.message}</span>}
+        </div>
+      </div>
+      <div className="form-control">
+        <div className="label">
+          <span className="label-text">Hobbies (optional)</span>
+          <span className="label-text-alt">Maximum of 3 items.</span>
+        </div>
+        <div className="grid gap-2">
+          {fields.map((field, index) => (
+            <label className="input input-bordered flex cursor-text items-center justify-between gap-2" key={field.id}>
+              <input type="text" className="w-full" {...register(`hobbies.${index}.value`)} />
+              <div className="flex place-content-center gap-1">
+                {/* mdi:plus */}
+                {/* @see https://icon-sets.iconify.design/mdi/plus/ */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1rem"
+                  height="1rem"
+                  viewBox="0 0 24 24"
+                  className="btn btn-square btn-outline btn-xs"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    insert(index + 1, { value: '' })
+                  }}>
+                  <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z" />
+                </svg>
+                {index > 0 && (
+                  // mdi:minus
+                  // @see https://icon-sets.iconify.design/mdi/minus/
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1rem"
+                    height="1rem"
+                    viewBox="0 0 24 24"
+                    className="btn btn-square btn-outline btn-xs"
+                    onClick={() => remove(index)}>
+                    <path fill="currentColor" d="M19 13H5v-2h14z" />
+                  </svg>
+                )}
+              </div>
+            </label>
+          ))}
+        </div>
+        <div className="label">
+          {touchedFields.hobbies && errors.hobbies && (
+            <span className="label-text-alt text-error">{errors.hobbies.message}</span>
+          )}
         </div>
       </div>
       <div className="form-control">
