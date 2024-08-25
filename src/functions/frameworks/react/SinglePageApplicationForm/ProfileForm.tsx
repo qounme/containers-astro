@@ -1,7 +1,8 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { SinglePageApplicationFormContext } from './context'
 import { profileFormProperties } from './schema'
 import { useFieldArray } from 'react-hook-form'
+import { fetchPrefectures, type Prefectures } from './api'
 
 export const ProfileForm = () => {
   const {
@@ -16,7 +17,12 @@ export const ProfileForm = () => {
     },
   } = useContext(SinglePageApplicationFormContext)
   const { fields, insert, remove } = useFieldArray({ control, name: 'hobbies' })
+  const [prefectures, setPrefectures] = useState<Prefectures>([])
   const isInValid = () => profileFormProperties.some((property) => getFieldState(property).invalid)
+
+  useEffect(() => {
+    fetchPrefectures().then((data) => data && setPrefectures(data))
+  }, [])
 
   return (
     <form className="w-full">
@@ -84,6 +90,24 @@ export const ProfileForm = () => {
         <div className="label">
           {touchedFields.phoneNumbers && errors.phoneNumbers && (
             <span className="label-text-alt text-error">{errors.phoneNumbers.message}</span>
+          )}
+        </div>
+      </div>
+      <div className="form-control">
+        <div className="label">
+          <span className="label-text">Prefecture</span>
+        </div>
+        <select className="select select-bordered" {...register('prefecture')}>
+          <option value="">---</option>
+          {prefectures.map((prefecture) => (
+            <option key={prefecture.id} value={prefecture.name}>
+              {prefecture.name}
+            </option>
+          ))}
+        </select>
+        <div className="label">
+          {touchedFields.prefecture && errors.prefecture && (
+            <span className="label-text-alt text-error">{errors.prefecture.message}</span>
           )}
         </div>
       </div>

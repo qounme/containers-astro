@@ -25,6 +25,7 @@ const formDefaultValue: () => FormDefaultValue = () => ({
   name: '',
   gender: 'undisclosed',
   phoneNumbers: ['', '', ''],
+  prefecture: '',
   bio: '',
   hobbies: [{ value: '' }],
   emailSubscription: true,
