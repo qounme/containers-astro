@@ -2,6 +2,7 @@ import { createContext, useRef, useState } from 'react'
 import { useForm, type UseFormReturn } from 'react-hook-form'
 import { singlePageApplicationFormSchema, type SinglePageApplicationFormSchema } from './schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import * as api from './api'
 
 type SinglePageApplicationFormContext = {
   step: number
@@ -10,6 +11,8 @@ type SinglePageApplicationFormContext = {
   useSinglePageApplicationForm: UseFormReturn<SinglePageApplicationFormSchema>
   isFormInitialized: boolean
   initializeForm: () => void
+  prefectures: api.Prefectures
+  fetchPrefectures: () => void
 }
 
 export const SinglePageApplicationFormContext = createContext<SinglePageApplicationFormContext>(
@@ -55,6 +58,11 @@ export const singlePageApplicationFormContextDefaultValue: () => SinglePageAppli
     useSinglePageApplicationForm.trigger().then(() => (isFormInitialized.current = true))
   }
 
+  const [prefectures, setPrefectures] = useState<api.Prefectures>([])
+  const fetchPrefectures = () => {
+    api.fetchPrefectures().then((data) => data && setPrefectures(data))
+  }
+
   return {
     step,
     incrementStep,
@@ -62,5 +70,7 @@ export const singlePageApplicationFormContextDefaultValue: () => SinglePageAppli
     useSinglePageApplicationForm,
     isFormInitialized: isFormInitialized.current,
     initializeForm,
+    prefectures,
+    fetchPrefectures,
   }
 }

@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from 'react'
 import { SinglePageApplicationFormContext } from './context'
 import { profileFormProperties } from './schema'
 import { useFieldArray } from 'react-hook-form'
-import { fetchPrefectures, type Prefectures } from './api'
 
 export const ProfileForm = () => {
   const {
@@ -15,13 +14,14 @@ export const ProfileForm = () => {
       watch,
       control,
     },
+    prefectures,
+    fetchPrefectures,
   } = useContext(SinglePageApplicationFormContext)
   const { fields, insert, remove } = useFieldArray({ control, name: 'hobbies' })
-  const [prefectures, setPrefectures] = useState<Prefectures>([])
   const isInValid = () => profileFormProperties.some((property) => getFieldState(property).invalid)
 
   useEffect(() => {
-    fetchPrefectures().then((data) => data && setPrefectures(data))
+    prefectures.length === 0 && fetchPrefectures()
   }, [])
 
   return (
