@@ -97,14 +97,21 @@ export const ProfileForm = () => {
         <div className="label">
           <span className="label-text">Prefecture</span>
         </div>
-        <select className="select select-bordered" {...register('prefecture')}>
-          <option value="">---</option>
-          {prefectures.map((prefecture) => (
-            <option key={prefecture.id} value={prefecture.code}>
-              {prefecture.code}
-            </option>
-          ))}
-        </select>
+        <div className="relative">
+          {prefectures.length === 0 && (
+            <div className="absolute inset-0 flex place-content-center">
+              <span className="loading loading-dots"></span>
+            </div>
+          )}
+          <select className="select select-bordered w-full" {...register('prefecture')}>
+            <option value="">---</option>
+            {prefectures.map((prefecture) => (
+              <option key={prefecture.id} value={prefecture.code}>
+                {prefecture.code}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="label">
           {touchedFields.prefecture && errors.prefecture && (
             <span className="label-text-alt text-error">{errors.prefecture.message}</span>
