@@ -59,6 +59,19 @@ export const ConfirmationForm = () => {
       </div>
       <div className="form-control">
         <div className="label">
+          <span className="label-text">Hobbies</span>
+        </div>
+        <div className="grid gap-2">
+          {getValues('hobbies').map((hobby, index) => (
+            <p key={index} className="input input-bordered flex items-center bg-base-200">
+              {hobby.value.trim()}
+            </p>
+          ))}
+        </div>
+        <div className="label"></div>
+      </div>
+      <div className="form-control">
+        <div className="label">
           <span className="label-text">Email subscription</span>
         </div>
         <div className="divider my-0"></div>
