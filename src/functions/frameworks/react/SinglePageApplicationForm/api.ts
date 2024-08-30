@@ -1,8 +1,8 @@
 import { routes } from '../../../../configs/routes'
 
 type Prefecture = {
-  id: number
-  code: string
+  code: number
+  name: string
 }
 export type Prefectures = Prefecture[]
 
