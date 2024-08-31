@@ -18,7 +18,7 @@ export const EmailForm = () => {
     <form className="w-full">
       <div className="form-control">
         <div className="label">
-          <span className="label-text">Email</span>
+          <span className="label-text">メールアドレス</span>
         </div>
         <input type="text" className="input input-bordered" {...register('email')} />
         <div className="label">
@@ -33,7 +33,7 @@ export const EmailForm = () => {
           disabled={!isFormInitialized || isInValid()}
           className="btn btn-primary btn-block sm:btn-wide"
           onClick={incrementStep}>
-          Next
+          次へ
         </button>
       </div>
     </form>

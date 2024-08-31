@@ -20,7 +20,7 @@ export const SinglePageApplicationForm = () => {
     <SinglePageApplicationFormContext.Provider value={contextValue}>
       <div className="card w-5/6 bg-base-200 shadow-lg sm:w-4/6 lg:w-1/2">
         <div className="card-body items-center">
-          <h2 className="card-title font-normal">Sign up</h2>
+          <h2 className="card-title font-normal">会員登録</h2>
           <ul className="steps">
             <li className={stepClassName(1)}></li>
             <li className={stepClassName(2)}></li>

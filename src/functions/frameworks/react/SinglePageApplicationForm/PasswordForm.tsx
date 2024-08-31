@@ -18,8 +18,8 @@ export const PasswordForm = () => {
     <form className="w-full">
       <div className="form-control">
         <div className="label">
-          <span className="label-text">Password</span>
-          <span className="label-text-alt ml-2">Minimum 8 characters with letters and numbers.</span>
+          <span className="label-text">パスワード</span>
+          <span className="label-text-alt ml-2">半角英数字8文字以上</span>
         </div>
         <input type="password" className="input input-bordered" {...register('password')} />
         <div className="label">
@@ -30,7 +30,7 @@ export const PasswordForm = () => {
       </div>
       <div className="form-control">
         <div className="label">
-          <span className="label-text">Password (confirmation)</span>
+          <span className="label-text">確認用パスワード</span>
         </div>
         <input type="password" className="input input-bordered" {...register('passwordConfirmation')} />
         <div className="label">
@@ -41,14 +41,14 @@ export const PasswordForm = () => {
       </div>
       <div className="card-actions mt-4 w-full justify-center">
         <button type="button" className="btn btn-neutral btn-block sm:btn-wide" onClick={decrementStep}>
-          Back
+          戻る
         </button>
         <button
           type="button"
           disabled={isInValid()}
           className="btn btn-primary btn-block sm:btn-wide"
           onClick={incrementStep}>
-          Next
+          次へ
         </button>
       </div>
     </form>

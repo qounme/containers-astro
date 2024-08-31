@@ -28,7 +28,7 @@ export const ProfileForm = () => {
     <form className="w-full">
       <div className="form-control">
         <div className="label">
-          <span className="label-text">Name</span>
+          <span className="label-text">名前</span>
         </div>
         <input type="text" className="input input-bordered" {...register('name')} />
         <div className="label">
@@ -39,31 +39,31 @@ export const ProfileForm = () => {
       </div>
       <div className="form-control">
         <div className="label">
-          <span className="label-text">Gender</span>
+          <span className="label-text">性別</span>
         </div>
         <div className="flex flex-col items-start justify-center md:flex-row md:items-center md:justify-start md:gap-2 xl:gap-4">
           <label className="label col-start-1 cursor-pointer">
             <input type="radio" className="radio" value="male" {...register('gender')} />
-            <span className="label-text ml-4">Male</span>
+            <span className="label-text ml-4">男性</span>
           </label>
           <label className="label col-start-2 cursor-pointer">
             <input type="radio" className="radio" value="female" {...register('gender')} />
-            <span className="label-text ml-4">Female</span>
+            <span className="label-text ml-4">女性</span>
           </label>
           <label className="label col-start-3 cursor-pointer">
             <input type="radio" className="radio" value="non-binary" {...register('gender')} />
-            <span className="label-text ml-4">Non-binary</span>
+            <span className="label-text ml-4">その他</span>
           </label>
           <label className="label col-start-3 cursor-pointer">
             <input type="radio" className="radio" value="undisclosed" {...register('gender')} />
-            <span className="label-text ml-4">Undisclosed</span>
+            <span className="label-text ml-4">回答しない</span>
           </label>
         </div>
         <div className="label"></div>
       </div>
       <div className="form-control">
         <div className="label">
-          <span className="label-text">Phone number</span>
+          <span className="label-text">携帯電話番号</span>
         </div>
         <div className="flex items-center justify-between">
           <input
@@ -95,7 +95,7 @@ export const ProfileForm = () => {
       </div>
       <div className="form-control">
         <div className="label">
-          <span className="label-text">Prefecture</span>
+          <span className="label-text">都道府県</span>
         </div>
         <div className="relative">
           {prefectures.length === 0 && (
@@ -106,7 +106,7 @@ export const ProfileForm = () => {
           <select className="select select-bordered w-full" {...register('prefecture')}>
             <option value="">---</option>
             {prefectures.map((prefecture) => (
-              <option key={prefecture.code} value={prefecture.code}>
+              <option key={prefecture.code} value={prefecture.name}>
                 {prefecture.name}
               </option>
             ))}
@@ -120,7 +120,7 @@ export const ProfileForm = () => {
       </div>
       <div className="form-control">
         <div className="label">
-          <span className="label-text">Bio (optional)</span>
+          <span className="label-text">プロフィール (任意)</span>
         </div>
         <input type="text" className="input input-bordered" {...register('bio')} />
         <div className="label">
@@ -129,8 +129,8 @@ export const ProfileForm = () => {
       </div>
       <div className="form-control">
         <div className="label">
-          <span className="label-text">Hobbies (optional)</span>
-          <span className="label-text-alt ml-2">Maximum of 3 items.</span>
+          <span className="label-text">趣味 (任意)</span>
+          <span className="label-text-alt ml-2">3個まで</span>
         </div>
         <div className="grid gap-2">
           {fields.map((field, index) => (
@@ -176,22 +176,22 @@ export const ProfileForm = () => {
       </div>
       <div className="form-control">
         <div className="label">
-          <span className="label-text">Email subscription</span>
+          <span className="label-text">メール購読</span>
         </div>
         <label className="label mr-auto cursor-pointer justify-start">
           <input type="checkbox" className="checkbox" {...register('emailSubscription')} />
-          <span className="label-text ml-4">Subscribe</span>
+          <span className="label-text ml-4">購読する</span>
         </label>
         {watch('emailSubscription') && (
           <>
             <div className="divider my-0"></div>
             <label className="label mr-auto cursor-pointer justify-start py-1">
               <input type="checkbox" className="checkbox checkbox-sm" {...register('newEmailsSubscribed')} />
-              <span className="label-text ml-4">New messages</span>
+              <span className="label-text ml-4">新着メッセージ</span>
             </label>
             <label className="label mr-auto cursor-pointer justify-start py-1">
               <input type="checkbox" className="checkbox checkbox-sm" {...register('marketingEmailsSubscribed')} />
-              <span className="label-text ml-4">Marketing emails</span>
+              <span className="label-text ml-4">広告メール</span>
             </label>
             <div className="divider my-0"></div>
           </>
@@ -200,14 +200,14 @@ export const ProfileForm = () => {
       </div>
       <div className="card-actions mt-4 w-full justify-center">
         <button type="button" className="btn btn-neutral btn-block sm:btn-wide" onClick={decrementStep}>
-          Back
+          戻る
         </button>
         <button
           type="button"
           disabled={isInValid()}
           className="btn btn-primary btn-block sm:btn-wide"
           onClick={incrementStep}>
-          Next
+          次へ
         </button>
       </div>
     </form>
