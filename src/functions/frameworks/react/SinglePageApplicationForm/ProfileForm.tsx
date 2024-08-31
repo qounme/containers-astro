@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { FormContext } from './context'
 import { profileFormProperties } from './schema'
 import { useFieldArray } from 'react-hook-form'
+import { Icon } from '@iconify-icon/react'
 
 export const ProfileForm = () => {
   const {
@@ -137,32 +138,24 @@ export const ProfileForm = () => {
             <label className="input input-bordered flex cursor-text items-center justify-between gap-2" key={field.id}>
               <input type="text" className="w-full" {...register(`hobbies.${index}.value`)} />
               <div className="flex place-content-center gap-1">
-                {/* mdi:plus */}
-                {/* @see https://icon-sets.iconify.design/mdi/plus/ */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
+                <Icon
+                  icon="mdi:plus"
                   width="1rem"
                   height="1rem"
-                  viewBox="0 0 24 24"
                   className="btn btn-square btn-outline btn-xs"
                   onClick={(e) => {
                     e.preventDefault()
                     insert(index + 1, { value: '' })
-                  }}>
-                  <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z" />
-                </svg>
+                  }}
+                />
                 {index > 0 && (
-                  // mdi:minus
-                  // @see https://icon-sets.iconify.design/mdi/minus/
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
+                  <Icon
+                    icon="mdi:minus"
                     width="1rem"
                     height="1rem"
-                    viewBox="0 0 24 24"
                     className="btn btn-square btn-outline btn-xs"
-                    onClick={() => remove(index)}>
-                    <path fill="currentColor" d="M19 13H5v-2h14z" />
-                  </svg>
+                    onClick={() => remove(index)}
+                  />
                 )}
               </div>
             </label>
