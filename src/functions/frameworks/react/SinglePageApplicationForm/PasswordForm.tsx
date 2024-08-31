@@ -1,18 +1,18 @@
 import { useContext } from 'react'
-import { SinglePageApplicationFormContext } from './context'
+import { FormContext } from './context'
 import { passwordFormProperties } from './schema'
 
 export const PasswordForm = () => {
   const {
     incrementStep,
     decrementStep,
-    useSinglePageApplicationForm: {
+    useFormSchema: {
       register,
       formState: { errors, touchedFields },
       getFieldState,
     },
-  } = useContext(SinglePageApplicationFormContext)
-  const isInValid = () => passwordFormProperties.some((property) => getFieldState(property).invalid)
+  } = useContext(FormContext)
+  const isInValid = () => passwordFormProperties().some((property) => getFieldState(property).invalid)
 
   return (
     <form className="w-full">

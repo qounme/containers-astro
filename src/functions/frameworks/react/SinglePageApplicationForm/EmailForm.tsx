@@ -1,18 +1,18 @@
 import { useContext } from 'react'
-import { SinglePageApplicationFormContext } from './context'
+import { FormContext } from './context'
 import { emailFormProperties } from './schema'
 
 export const EmailForm = () => {
   const {
     incrementStep,
-    useSinglePageApplicationForm: {
+    useFormSchema: {
       register,
       formState: { errors, touchedFields },
       getFieldState,
     },
     isFormInitialized,
-  } = useContext(SinglePageApplicationFormContext)
-  const isInValid = () => emailFormProperties.some((property) => getFieldState(property).invalid)
+  } = useContext(FormContext)
+  const isInValid = () => emailFormProperties().some((property) => getFieldState(property).invalid)
 
   return (
     <form className="w-full">

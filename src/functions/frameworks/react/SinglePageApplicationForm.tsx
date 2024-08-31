@@ -2,14 +2,11 @@ import { EmailForm } from './SinglePageApplicationForm/EmailForm'
 import { ProfileForm } from './SinglePageApplicationForm/ProfileForm'
 import { PasswordForm } from './SinglePageApplicationForm/PasswordForm'
 import { ConfirmationForm } from './SinglePageApplicationForm/ConfirmationForm'
-import {
-  SinglePageApplicationFormContext,
-  singlePageApplicationFormContextDefaultValue,
-} from './SinglePageApplicationForm/context'
+import { FormContext, formContextDefaultValue } from './SinglePageApplicationForm/context'
 import { useEffect } from 'react'
 
 export const SinglePageApplicationForm = () => {
-  const contextValue = singlePageApplicationFormContextDefaultValue()
+  const contextValue = formContextDefaultValue()
   const stepClassName = (n: number) => (contextValue.step >= n ? 'step step-primary' : 'step')
 
   useEffect(() => {
@@ -17,7 +14,7 @@ export const SinglePageApplicationForm = () => {
   }, [])
 
   return (
-    <SinglePageApplicationFormContext.Provider value={contextValue}>
+    <FormContext.Provider value={contextValue}>
       <div className="card w-5/6 bg-base-200 shadow-lg sm:w-4/6 lg:w-1/2">
         <div className="card-body items-center">
           <h2 className="card-title font-normal">会員登録</h2>
@@ -33,6 +30,6 @@ export const SinglePageApplicationForm = () => {
           {contextValue.step === 4 && <ConfirmationForm />}
         </div>
       </div>
-    </SinglePageApplicationFormContext.Provider>
+    </FormContext.Provider>
   )
 }

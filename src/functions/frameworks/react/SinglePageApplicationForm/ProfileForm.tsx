@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { SinglePageApplicationFormContext } from './context'
+import { FormContext } from './context'
 import { profileFormProperties } from './schema'
 import { useFieldArray } from 'react-hook-form'
 
@@ -7,7 +7,7 @@ export const ProfileForm = () => {
   const {
     incrementStep,
     decrementStep,
-    useSinglePageApplicationForm: {
+    useFormSchema: {
       register,
       formState: { errors, touchedFields },
       getFieldState,
@@ -16,9 +16,9 @@ export const ProfileForm = () => {
     },
     prefectures,
     fetchPrefectures,
-  } = useContext(SinglePageApplicationFormContext)
+  } = useContext(FormContext)
   const { fields, insert, remove } = useFieldArray({ control, name: 'hobbies' })
-  const isInValid = () => profileFormProperties.some((property) => getFieldState(property).invalid)
+  const isInValid = () => profileFormProperties().some((property) => getFieldState(property).invalid)
 
   useEffect(() => {
     prefectures.length === 0 && fetchPrefectures()
@@ -51,7 +51,7 @@ export const ProfileForm = () => {
             <span className="label-text ml-4">女性</span>
           </label>
           <label className="label col-start-3 cursor-pointer">
-            <input type="radio" className="radio" value="non-binary" {...register('gender')} />
+            <input type="radio" className="radio" value="non_binary" {...register('gender')} />
             <span className="label-text ml-4">その他</span>
           </label>
           <label className="label col-start-3 cursor-pointer">
@@ -179,19 +179,19 @@ export const ProfileForm = () => {
           <span className="label-text">メール購読</span>
         </div>
         <label className="label mr-auto cursor-pointer justify-start">
-          <input type="checkbox" className="checkbox" {...register('emailSubscription')} />
+          <input type="checkbox" className="checkbox" {...register('receiveEmails')} />
           <span className="label-text ml-4">購読する</span>
         </label>
-        {watch('emailSubscription') && (
+        {watch('receiveEmails') && (
           <>
             <div className="divider my-0"></div>
             <label className="label mr-auto cursor-pointer justify-start py-1">
-              <input type="checkbox" className="checkbox checkbox-sm" {...register('newEmailsSubscribed')} />
-              <span className="label-text ml-4">新着メッセージ</span>
+              <input type="checkbox" className="checkbox checkbox-sm" {...register('receiveNewsletterEmails')} />
+              <span className="label-text ml-4">最新情報のお知らせ</span>
             </label>
             <label className="label mr-auto cursor-pointer justify-start py-1">
-              <input type="checkbox" className="checkbox checkbox-sm" {...register('marketingEmailsSubscribed')} />
-              <span className="label-text ml-4">広告メール</span>
+              <input type="checkbox" className="checkbox checkbox-sm" {...register('receivePromotionalEmails')} />
+              <span className="label-text ml-4">商品・キャンペーンのお知らせ</span>
             </label>
             <div className="divider my-0"></div>
           </>

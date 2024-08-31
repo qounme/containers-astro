@@ -1,16 +1,16 @@
 import { useContext, useEffect } from 'react'
-import { SinglePageApplicationFormContext } from './context'
+import { FormContext } from './context'
 
 export const ConfirmationForm = () => {
   const {
     decrementStep,
-    useSinglePageApplicationForm: {
+    useFormSchema: {
       formState: { isValid },
       handleSubmit,
       getValues,
       trigger,
     },
-  } = useContext(SinglePageApplicationFormContext)
+  } = useContext(FormContext)
 
   useEffect(() => {
     trigger()
@@ -82,7 +82,7 @@ export const ConfirmationForm = () => {
           <span className="label-text">メール購読</span>
         </div>
         <div className="divider my-0"></div>
-        {getValues('emailSubscription') && (
+        {getValues('receiveEmails') && (
           <>
             <div className="label mr-auto justify-start py-1">
               <input
@@ -90,9 +90,9 @@ export const ConfirmationForm = () => {
                 readOnly
                 disabled
                 className="checkbox checkbox-sm cursor-default"
-                checked={getValues('newEmailsSubscribed')}
+                checked={getValues('receiveNewsletterEmails')}
               />
-              <span className="label-text ml-4">新着メッセージ</span>
+              <span className="label-text ml-4">最新情報のお知らせ</span>
             </div>
             <div className="label mr-auto justify-start py-1">
               <input
@@ -100,13 +100,13 @@ export const ConfirmationForm = () => {
                 readOnly
                 disabled
                 className="checkbox checkbox-sm cursor-default"
-                checked={getValues('marketingEmailsSubscribed')}
+                checked={getValues('receivePromotionalEmails')}
               />
-              <span className="label-text ml-4">広告メール</span>
+              <span className="label-text ml-4">商品・キャンペーンのお知らせ</span>
             </div>
           </>
         )}
-        {!getValues('emailSubscription') && (
+        {!getValues('receiveEmails') && (
           <div className="label">
             <span className="label-text">選択されていません</span>
           </div>
