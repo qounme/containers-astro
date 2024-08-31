@@ -1,26 +1,24 @@
 import { createContext, useRef, useState } from 'react'
 import { useForm, type UseFormReturn } from 'react-hook-form'
-import { singlePageApplicationFormSchema, type SinglePageApplicationFormSchema } from './schema'
+import { formSchema, type FormSchema } from './schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as api from './api'
 
-type SinglePageApplicationFormContext = {
+type FormContext = {
   step: number
   incrementStep: () => void
   decrementStep: () => void
-  useSinglePageApplicationForm: UseFormReturn<SinglePageApplicationFormSchema>
+  useFormSchema: UseFormReturn<FormSchema>
   isFormInitialized: boolean
   initializeForm: () => void
   prefectures: api.Prefectures
   fetchPrefectures: () => void
 }
 
-export const SinglePageApplicationFormContext = createContext<SinglePageApplicationFormContext>(
-  {} as SinglePageApplicationFormContext,
-)
+export const FormContext = createContext<FormContext>({} as FormContext)
 
 type UseFormOptionProperty<T, K extends string> = T extends Partial<{ [P in K]: infer V }> ? V : never
-type UseFormOption = Parameters<typeof useForm<SinglePageApplicationFormSchema>>['0']
+type UseFormOption = Parameters<typeof useForm<FormSchema>>['0']
 type FormDefaultValue = UseFormOptionProperty<UseFormOption, 'defaultValues'>
 
 const formDefaultValue: () => FormDefaultValue = () => ({
@@ -31,14 +29,14 @@ const formDefaultValue: () => FormDefaultValue = () => ({
   prefecture: '',
   bio: '',
   hobbies: [{ value: '' }],
-  emailSubscription: true,
-  newEmailsSubscribed: true,
-  marketingEmailsSubscribed: true,
+  receiveEmails: true,
+  receiveNewsletterEmails: true,
+  receivePromotionalEmails: true,
   password: '',
   passwordConfirmation: '',
 })
 
-export const singlePageApplicationFormContextDefaultValue: () => SinglePageApplicationFormContext = () => {
+export const formContextDefaultValue: () => FormContext = () => {
   const [step, setStep] = useState(1)
   const incrementStep = () => {
     setStep((s) => Math.min(s + 1, 4))
@@ -47,15 +45,15 @@ export const singlePageApplicationFormContextDefaultValue: () => SinglePageAppli
     setStep((s) => Math.max(s - 1, 1))
   }
 
-  const useSinglePageApplicationForm = useForm<SinglePageApplicationFormSchema>({
-    resolver: zodResolver(singlePageApplicationFormSchema),
+  const useFormSchema = useForm<FormSchema>({
+    resolver: zodResolver(formSchema()),
     mode: 'onChange',
     defaultValues: formDefaultValue(),
   })
 
   const isFormInitialized = useRef(false)
   const initializeForm = () => {
-    useSinglePageApplicationForm.trigger().then(() => (isFormInitialized.current = true))
+    useFormSchema.trigger().then(() => (isFormInitialized.current = true))
   }
 
   const [prefectures, setPrefectures] = useState<api.Prefectures>([])
@@ -67,7 +65,7 @@ export const singlePageApplicationFormContextDefaultValue: () => SinglePageAppli
     step,
     incrementStep,
     decrementStep,
-    useSinglePageApplicationForm,
+    useFormSchema,
     isFormInitialized: isFormInitialized.current,
     initializeForm,
     prefectures,
