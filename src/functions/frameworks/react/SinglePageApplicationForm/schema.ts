@@ -2,7 +2,7 @@ import { z } from 'astro/zod'
 import validator from 'validator'
 
 // submit parameter
-type SchemaParameter = {
+export type SchemaParameter = {
   email: string
   name: string
   gender: 'male' | 'female' | 'non_binary' | 'undisclosed'
