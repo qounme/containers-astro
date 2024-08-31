@@ -123,7 +123,7 @@ export const ConfirmationForm = () => {
           type="button"
           disabled={!isValid}
           className="btn btn-primary btn-block sm:btn-wide"
-          onClick={handleSubmit((data) => console.log(data))}>
+          onClick={handleSubmit((data) => console.log(buildSchemaParameter(data)))}>
           登録
         </button>
       </div>
