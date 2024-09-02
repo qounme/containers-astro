@@ -1,0 +1,12 @@
+---
+import GlobalLayout from '../../../layouts/GlobalLayout.astro'
+import { SinglePageApplicationForm as SPAForm } from '../../../functions/frameworks/react/SinglePageApplicationForm'
+---
+
+<GlobalLayout title="Single Page Application Form | Containers Astro">
+  <main class="container mx-auto my-8 flex flex-col items-center">
+    <h1 class="text-xl sm:text-3xl">Single Page Application Form</h1>
+    <p class="my-4">React + React Hook Form + Zod</p>
+    <SPAForm client:load />
+  </main>
+</GlobalLayout>

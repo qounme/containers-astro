@@ -1,5 +1,30 @@
 ---
 import GlobalLayout from '../layouts/GlobalLayout.astro'
+import { routes } from '../configs/routes'
 ---
 
-<GlobalLayout title="Containers Astro" />
+<GlobalLayout title="Containers Astro">
+  <div class="hero min-h-screen">
+    <div class="hero-overlay opacity-80"></div>
+    <div class="hero-content flex-col gap-4 text-neutral-content">
+      <h1 class="text-5xl">Hello world</h1>
+    </div>
+  </div>
+  <main class="container mx-auto my-8 flex flex-col items-center px-4 sm:px-0">
+    <h2 class="mb-6 text-xl sm:text-2xl">UI コンポーネント</h2>
+    <div class="grid w-full">
+      <a
+        href={routes.frameworks.react.singlePageApplicationForm}
+        class="card bg-base-200 shadow-lg transition-transform hover:scale-110 sm:w-1/2 md:w-1/3 xl:w-1/4">
+        <div class="card-body">
+          <h5 class="text-lg">Single Page Application Form</h5>
+          <ul class="list-inside list-disc text-sm">
+            <li>React</li>
+            <li>React Hook Form</li>
+            <li>Zod</li>
+          </ul>
+        </div>
+      </a>
+    </div>
+  </main>
+</GlobalLayout>
